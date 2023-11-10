@@ -1,3 +1,8 @@
 body {
-  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+  background-color: #A6B1E1;
+  color: #0A090C;
+  /* periwinkle: #DCD6F7;
+  mauve: #B4869F; 
+  dark purple: #4E4C67; */
+  font-family: 'Montserrat', sans-serif;
 }
