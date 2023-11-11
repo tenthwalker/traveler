@@ -1,26 +1,43 @@
 body {
   background-color: #A6B1E1;
   color: #0A090C;
-  /* periwinkle: #DCD6F7;
-  mauve: #B4869F; 
-  dark purple: #4E4C67; */
   font-family: 'Montserrat', sans-serif;
-  align-items: center;
-  justify-content: center;
   height: 100vh;
   width: 100vw;
 }
 
-body, #login {
+body, main, section {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#login {
+section {
   flex-direction: column;
-  height: 30%;
-  width: 30%;
+}
+
+button {
+  background-color: #B4869F;
+}
+
+.dashboard, #login {
+  background-color: #4E4C67;
+}
+
+.trip-block {
+  background-color: #DCD6F7;
+  overflow: wrap;
 }
 
 .hidden {
   display: none;
+}
+
+.overview {
+  justify-content: space-around;
+}
+
+#login {
+  height: 30%;
+  width: 30%;
 }
