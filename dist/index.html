@@ -10,25 +10,28 @@
   <title>Travel Tracker</title>
 </head>
 <body>
-  <section class="login">
+  <section id="login">
     <input type="text" placeholder="username"></input>
     <input type="text" placeholder="password"></input>
     <button id="submitLogin">submit</button>
   </section>
-  <section class="dashboard hidden">
-  <!-- trip request input: date, duration, and destination, # of travelers -->
-    <input></input>
-    <input></input>
-    <input type="text" placeholder="destination"></input>
-  <!-- trip request cost display -->
-    <article>
-    <!-- past trips -->
-    <!-- upcoming trips -->
-    <!-- pending trip requests -->
-    <!-- total amount spent on trips this year -->
-    </article>
-  </section>
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+  <main>
+    <section class="dashboard hidden">
+      <div id="inputBlock">
+        <input type="text" placeholder="departure yyyy/mm/dd" id="departDate"></input>
+        <input type="text" placeholder="number of days" id="tripDuration"></input>
+        <input type="text" placeholder="destination" id="tripDest"></input>
+        <input type="text" placeholder="number of travelers" id="headcount"></input>
+        <p class="trip-block hidden" id="costDisplay"></p>
+      </div>
+      <article class="overview">
+        <div class="trip-block" id="pastTrips"></div>
+        <div class="trip-block" id="futureTrips"></div>
+        <div class="trip-block" id="pendingTrips"></div>
+        <div class="trip-block" id="totalSpent"></div>
+      </article>
+    </section>
+  </main>
   <script src="bundle.js"></script>
 </body>
 </html>
