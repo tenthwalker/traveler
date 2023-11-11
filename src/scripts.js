@@ -3,10 +3,13 @@
 ////////////Imports/////////////
 import './css/styles.css';
 import {} from './apiCalls';
-import {} from './scriptDefinitions';
-import {} from './domUpdates';
+import {
+  loginAttempt,
+} from './scriptDefinitions';
+import { loginButton } from './domUpdates';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 ////////Event Listeners/////////
 
+loginButton.addEventListener('click', loginAttempt);
 

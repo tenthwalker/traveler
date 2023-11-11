@@ -17,10 +17,13 @@ section {
 }
 
 button {
+  border: 3px solid white;
   background-color: #B4869F;
+  height: 15%;
+  width: 15%;
 }
 
-.dashboard, #login {
+#dashboard, #login {
   background-color: #4E4C67;
 }
 
@@ -39,5 +42,6 @@ button {
 
 #login {
   height: 30%;
+  justify-content: space-evenly;
   width: 30%;
 }
