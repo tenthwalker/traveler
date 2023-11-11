@@ -23,7 +23,7 @@ button {
   width: 15%;
 }
 
-.dashboard, #login {
+#dashboard, #login {
   background-color: #4E4C67;
 }
 

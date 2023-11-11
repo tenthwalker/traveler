@@ -1,13 +1,14 @@
 ////////
 
-const { usernameField, passwordField } = require("./domUpdates");
+const { usernameField, passwordField, loginView, mainView } = require("./domUpdates");
 
 function loginAttempt(){
   if(usernameField.value && passwordField.value === 'travel'){
     const usernameGiven = usernameField.value;
-
+    loginView.classList.add('hidden');
+    mainView.classList.remove('hidden');
   } else {
-    alert('Please verify that your username and password are correct before trying again.');
+    alert('Please verify that you have entered a correct username and password before trying again.');
     usernameField.innerHTML = '';
     passwordField.innerHTML = '';
   }
