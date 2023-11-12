@@ -35,7 +35,19 @@ function getTrips() {
 }
 
 ////////GET Destinations/////////
-
+function getDestinations() {
+  return fetch('http://localhost:3001/api/v1/destinations')
+  .then((response) => {
+    if (!response.ok) {
+      throw Error(`Could not get travelers. Request code: ${response.status}`)
+    }
+    return response.json()
+  })
+  .then((data) => data.destinations)
+  .catch(error => {
+    console.log(error);
+  });
+}
 
 ////////POST Destination/////////
 
@@ -48,5 +60,7 @@ function getTrips() {
 
 export {
   getTravelers,
-
+  getTrips,
+  getDestinations,
+  
 }
