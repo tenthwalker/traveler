@@ -12,6 +12,7 @@ function getTravelers() {
   })
   .then((data) => data.travelers)
   .catch(error => {
+    alert(error.message);
     console.log(error);
   });
 }
@@ -30,6 +31,7 @@ function getTrips() {
   })
   .then((data) => data.trips)
   .catch(error => {
+    alert(error.message);
     console.log(error);
   });
 }
@@ -45,6 +47,7 @@ function getDestinations() {
   })
   .then((data) => data.destinations)
   .catch(error => {
+    alert(error.message);
     console.log(error);
   });
 }
@@ -68,13 +71,24 @@ function postTrip(newTrip) {
     return getTrips()
   })
   .catch(error => {
+    alert(error.message);
     console.log(error);
   });
+}
+
+/////Fetch all GET data/////
+function fetchAllGET() {
+  return Promise.all([
+    getTravelers(),
+    getTrips(),
+    getDestinations()
+  ])
 }
 
 export {
   getTravelers,
   getTrips,
   getDestinations,
-  postTrip
+  postTrip,
+  fetchAllGET
 }
