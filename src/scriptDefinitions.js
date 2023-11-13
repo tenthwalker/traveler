@@ -1,5 +1,5 @@
 ////////global variables
-// let userID;
+let currentUser;
 
 const {
   // allTravelers,
@@ -23,7 +23,8 @@ function loginAttempt(){
       let userID = usernameField.value.match(/^traveler([1-9]|[1-4][0-9]|50)$/)[1]
       userID = parseInt(userID)
       fetchAllGET().then((allTravelers)=>{
-        createFilter(allTravelers, userID)
+      currentUser = createFilter(allTravelers, userID)
+        // display info on dashboard for currentUser, using userID to filter through allTrips to find matching userIDs
       });
       loginView.classList.add('hidden');
       mainView.classList.remove('hidden');
