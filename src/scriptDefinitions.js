@@ -1,12 +1,32 @@
-////////
+////////global variables
+// let userID;
 
-const { usernameField, passwordField, loginView, mainView } = require("./domUpdates");
+const {
+  // allTravelers,
+  getTrips,
+  getDestinations,
+  postTrip,
+  fetchAllGET
+} = require('./apiCalls');
+
+const {  
+  loginButton,
+  usernameField,
+  passwordField,
+  loginView,
+  mainView, 
+} = require("./domUpdates");
 
 function loginAttempt(){
-  if(usernameField.value && passwordField.value === 'travel'){
-    const usernameGiven = usernameField.value;
-    loginView.classList.add('hidden');
-    mainView.classList.remove('hidden');
+    let usernameRegularExp = /^(traveler([1-9]|[1-4][0-9]|50))$/;
+    if (usernameRegularExp.test(usernameField.value) && passwordField.value === 'travel') {
+      let userID = usernameField.value.match(/^traveler([1-9]|[1-4][0-9]|50)$/)[1]
+      userID = parseInt(userID)
+      fetchAllGET().then((allTravelers)=>{
+        createFilter(allTravelers, userID)
+      });
+      loginView.classList.add('hidden');
+      mainView.classList.remove('hidden');
   } else {
     alert('Please verify that you have entered a correct username and password before trying again.');
     usernameField.innerHTML = '';
@@ -14,7 +34,14 @@ function loginAttempt(){
   }
 }
 
-// fetch call for all users on page load
+function createFilter(allTravelers, userID) {
+  const justUser = allTravelers[0].travelers.filter((traveler)=> {
+    return traveler.id===userID
+  })    
+// user matching traveler taken in from username field
+  return justUser
+}
+
 // grab user ids for all users
 // take in login fields data
 // filter through user ids for all users, check if usernameField.value is equal to 'traveler' + user id 
@@ -26,4 +53,5 @@ function loginAttempt(){
 
 module.exports = {
   loginAttempt,
+  createFilter
 }

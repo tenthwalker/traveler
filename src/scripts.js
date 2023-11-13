@@ -2,11 +2,26 @@
 
 ////////////Imports/////////////
 import './css/styles.css';
-import {} from './apiCalls';
+
+import {  getTravelers,
+  getTrips,
+  getDestinations,
+  postTrip,
+  fetchAllGET
+} from './apiCalls';
+
 import {
   loginAttempt,
+  createFilter
 } from './scriptDefinitions';
-import { loginButton } from './domUpdates';
+
+import {  
+  loginButton,
+  usernameField,
+  passwordField,
+  loginView,
+  mainView, } from './domUpdates';
+
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 ////////Event Listeners/////////

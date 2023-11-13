@@ -1,5 +1,5 @@
 /////////Global Variables////////
-
+var allTravelers;
 
 //////////GET Travelers//////////
 function getTravelers() {
@@ -10,7 +10,10 @@ function getTravelers() {
     } 
     return response.json()
   })
-  .then((data) => data.travelers)
+  .then((data) => {
+    allTravelers = data
+    return allTravelers
+  })
   .catch(error => {
     alert(error.message);
     console.log(error);
@@ -80,8 +83,8 @@ function postTrip(newTrip) {
 function fetchAllGET() {
   return Promise.all([
     getTravelers(),
-    getTrips(),
-    getDestinations()
+    // getTrips(),
+    // getDestinations()
   ])
 }
 
