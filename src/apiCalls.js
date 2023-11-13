@@ -1,5 +1,7 @@
 /////////Global Variables////////
-var allTravelers;
+let allTravelers;
+let allTrips;
+let allDestinations;
 
 //////////GET Travelers//////////
 function getTravelers() {
@@ -11,7 +13,7 @@ function getTravelers() {
     return response.json()
   })
   .then((data) => {
-    allTravelers = data
+    allTravelers = data.travelers
     return allTravelers
   })
   .catch(error => {
@@ -19,9 +21,6 @@ function getTravelers() {
     console.log(error);
   });
 }
-
-///////GET Traveler by ID////////
-
 
 ////////////GET Trips////////////
 function getTrips() {
@@ -32,7 +31,10 @@ function getTrips() {
     }
     return response.json()
   })
-  .then((data) => data.trips)
+  .then((data) => {
+    allTrips = data.trips
+    return allTrips
+  })
   .catch(error => {
     alert(error.message);
     console.log(error);
@@ -48,7 +50,10 @@ function getDestinations() {
     }
     return response.json()
   })
-  .then((data) => data.destinations)
+  .then((data) => {
+    allDestinations = data.destinations
+    return allDestinations
+  })
   .catch(error => {
     alert(error.message);
     console.log(error);
@@ -70,9 +75,9 @@ function postTrip(newTrip) {
     }
     return response.json()
   })
-  .then(() => {
-    return getTrips()
-  })
+  // .then(() => {
+  //   return getTrips()
+  // })
   .catch(error => {
     alert(error.message);
     console.log(error);
@@ -83,8 +88,8 @@ function postTrip(newTrip) {
 function fetchAllGET() {
   return Promise.all([
     getTravelers(),
-    // getTrips(),
-    // getDestinations()
+    getTrips(),
+    getDestinations()
   ])
 }
 

@@ -35,11 +35,13 @@ function loginAttempt(){
 }
 
 function createFilter(allTravelers, userID) {
-  const justUser = allTravelers[0].travelers.filter((traveler)=> {
+  console.log(allTravelers)
+  const justUser = allTravelers[0].filter((traveler)=> {
     return traveler.id===userID
   })    
+  console.log(justUser[0])
 // user matching traveler taken in from username field
-  return justUser
+  return justUser[0]
 }
 
 // grab user ids for all users
