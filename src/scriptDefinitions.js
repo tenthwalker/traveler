@@ -44,14 +44,7 @@ function createFilter(allTravelers, userID) {
   return justUser[0]
 }
 
-// grab user ids for all users
-// take in login fields data
-// filter through user ids for all users, check if usernameField.value is equal to 'traveler' + user id 
-// check if username is traveler<id>
-// check if password is travel
-// if both true, addClassList.hidden to the login page and remove it from the dashboard
-// if not, alert('Please verify that your username and password are correct before trying again.)
-// clear out login fields
+
 
 module.exports = {
   loginAttempt,

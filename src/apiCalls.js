@@ -75,9 +75,9 @@ function postTrip(newTrip) {
     }
     return response.json()
   })
-  // .then(() => {
-  //   return getTrips()
-  // })
+  .then((addedTrip) => {
+    return getTrips()
+  })
   .catch(error => {
     alert(error.message);
     console.log(error);
