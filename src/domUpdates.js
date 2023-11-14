@@ -16,7 +16,7 @@ function displayTrips(pastArray, futureArray, pendingArray) {
   pastDisplay(pastArray);
   futureDisplay(futureArray);
   pendingDisplay(pendingArray);
-  }
+}
 
 function pastDisplay(pastArray) {
   pastTrips.innerHTML = ''

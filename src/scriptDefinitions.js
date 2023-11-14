@@ -1,8 +1,6 @@
 ////////global variables
 let currentUser;
-let currentUserTrips;
 let userID;
-let sortedTrips;
 let pastToDisplay = [];
 let futureToDisplay = [];
 let pendingToDisplay = [];
@@ -59,17 +57,13 @@ function completeCurrentUser(currentUser, allTrips, allTravelers){
 }
 
 function filterTravs(allTravelers, userID) {
-  console.log(allTravelers, "allTrvaelers")
   const justUser = allTravelers.filter((traveler)=> {
     return traveler.id===userID
-  })    
-  console.log(justUser[0], "just user first value")
-  //returns the object of the user matching the userID
+  })
   return justUser[0]
 }
 
 function filterTrips(allTrips, userID) {
-  console.log(allTrips, "all trips")
   const justTrips = allTrips.filter((trip)=> {
     return trip.userID===userID
   })    
