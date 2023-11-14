@@ -8,7 +8,7 @@ let futureToDisplay = [];
 let pendingToDisplay = [];
 
 const {
-  // allTravelers,
+  allTravelers,
   getTrips,
   getDestinations,
   postTrip,
@@ -100,9 +100,7 @@ function sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDi
     pending: pendingToDisplay,
     future: futureToDisplay
   }
-  // displayTrips(pastToDisplay, pendingToDisplay, futureToDisplay)
 }
-
 
 module.exports = {
   loginAttempt,
@@ -114,5 +112,4 @@ module.exports = {
   pendingToDisplay,
   futureToDisplay,  
   completeCurrentUser,
- 
 }
