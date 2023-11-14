@@ -18,6 +18,7 @@ import {
   filterTrips,
   currentUser,
   pastToDisplay,
+  filterDestinations,
   pendingToDisplay,
   futureToDisplay,  
   completeCurrentUser,
@@ -47,13 +48,11 @@ loginButton.addEventListener('click', () => {
   fetchAllGET()
     .then((data)=>{
       loginAttempt()
-      const fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers)
+      const fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers, allDestinations)
       console.log(fullLoggedInUser, "full logged in user")
       sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
       console.log(fullLoggedInUser, "sorted data full user")
-      displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
-      
+      displayTrips(fullLoggedInUser.tripData.filteredTrips.past, fullLoggedInUser.tripData.filteredTrips.future, fullLoggedInUser.tripData.filteredTrips.pending)
       })
-
 });
 
