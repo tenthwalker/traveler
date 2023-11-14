@@ -4,23 +4,23 @@ let allTrips;
 let allDestinations;
 
 //////////GET Travelers//////////
-function getTravelers() {
-  return fetch('http://localhost:3001/api/v1/travelers')
-  .then((response) => {
-    if (!response.ok) {
-      throw Error(`Could not get travelers. Request code: ${response.status}`)
-    } 
-    return response.json()
-  })
-  .then((data) => {
-    allTravelers = data.travelers
-    return allTravelers
-  })
-  .catch(error => {
-    alert(error.message);
-    console.log(error);
-  });
-}
+// function getTravelers() {
+//   return fetch('http://localhost:3001/api/v1/travelers')
+//   .then((response) => {
+//     if (!response.ok) {
+//       throw Error(`Could not get travelers. Request code: ${response.status}`)
+//     } 
+//     return response.json()
+//   })
+//   .then((data) => {
+//     allTravelers = data.travelers
+//     return allTravelers
+//   })
+//   .catch(error => {
+//     alert(error.message);
+//     console.log(error);
+//   });
+// }
 
 ////////////GET Trips////////////
 function getTrips() {
@@ -87,14 +87,14 @@ function postTrip(newTrip) {
 /////Fetch all GET data/////
 function fetchAllGET() {
   return Promise.all([
-    getTravelers(),
+    // getTravelers(),
     getTrips(),
     getDestinations()
   ])
 }
 
 export {
-  getTravelers,
+  // getTravelers,
   getTrips,
   getDestinations,
   postTrip,

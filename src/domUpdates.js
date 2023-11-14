@@ -12,7 +12,26 @@ const totalSpent = document.querySelector('#totalSpent');
 
 
 ///////Update Functions////////
+function displayTrips(pastToDisplay, pendingToDisplay, futureToDisplay) {
+  pastTrips.innerHTML = ''
+  futureTrips.innerHTML = ''
+  pendingTrips.innerHTML = ''
+  pastTrips.innerHTML = `<h2>Past Trips</h2><p>${pastToDisplay}</p>`
+  futureTrips.innerHTML = `<h2>Future Trips</h2><p>${futureToDisplay}</p>`
+  pendingTrips.innerHTML = `<h2>Pending Trips</h2><p>${pendingToDisplay}</p>`
+}
 
+function pastDisplay() {
+
+}
+
+function futureDisplay() {
+
+}
+
+function pendingDisplay() {
+
+}
 
 export {
   loginButton,
@@ -24,5 +43,9 @@ export {
   pastTrips,
   futureTrips,
   tripView,
-  totalSpent
+  totalSpent,
+  displayTrips,
+  pastDisplay,
+  futureDisplay,
+  pendingDisplay,
 }

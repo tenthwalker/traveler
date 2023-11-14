@@ -3,7 +3,8 @@
 ////////////Imports/////////////
 import './css/styles.css';
 
-import {  getTravelers,
+import {  
+  // getTravelers,
   getTrips,
   getDestinations,
   postTrip,
@@ -12,7 +13,8 @@ import {  getTravelers,
 
 import {
   loginAttempt,
-  createFilter
+  sortTrips,
+  filterTrips,
 } from './scriptDefinitions';
 
 import {  
@@ -20,7 +22,16 @@ import {
   usernameField,
   passwordField,
   loginView,
-  mainView, } from './domUpdates';
+  mainView,
+  pendingTrips,
+  pastTrips,
+  futureTrips,
+  tripView,
+  totalSpent,
+  displayTrips,
+  pastDisplay,
+  futureDisplay,
+  pendingDisplay, } from './domUpdates';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
