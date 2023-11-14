@@ -12,25 +12,23 @@ const totalSpent = document.querySelector('#totalSpent');
 
 
 ///////Update Functions////////
-function displayTrips(pastToDisplay, pendingToDisplay, futureToDisplay) {
+function displayTrips(past, pending, future) {
+  
+}
+
+function pastDisplay(pastToDisplay) {
   pastTrips.innerHTML = ''
-  futureTrips.innerHTML = ''
-  pendingTrips.innerHTML = ''
   pastTrips.innerHTML = `<h2>Past Trips</h2><p>${pastToDisplay}</p>`
+}
+
+function futureDisplay(futureToDisplay) {
+  futureTrips.innerHTML = ''
   futureTrips.innerHTML = `<h2>Future Trips</h2><p>${futureToDisplay}</p>`
+}
+
+function pendingDisplay(pendingToDisplay) {
+  pendingTrips.innerHTML = ''
   pendingTrips.innerHTML = `<h2>Pending Trips</h2><p>${pendingToDisplay}</p>`
-}
-
-function pastDisplay() {
-
-}
-
-function futureDisplay() {
-
-}
-
-function pendingDisplay() {
-
 }
 
 export {

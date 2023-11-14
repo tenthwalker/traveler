@@ -32,19 +32,12 @@ const {
   pendingDisplay,
 } = require("./domUpdates");
 
+
+
 function loginAttempt(){
   let usernameID = usernameField.value.split('traveler');
   if (usernameField.value === 'traveler' + usernameID[1] && passwordField.value === 'travel') {
     userID = parseInt(usernameID[1])
-    fetchAllGET()
-    .then((allTrips)=>{
-      currentUserTrips = filterTrips(allTrips, userID)
-      return currentUserTrips
-      })
-      .then((currentUserTrips) => {
-        sortedTrips = sortTrips(currentUserTrips, pastToDisplay, futureToDisplay, pendingToDisplay)
-        return sortedTrips
-      })
     loginView.classList.add('hidden');
     mainView.classList.remove('hidden');
   } else {
@@ -54,27 +47,40 @@ function loginAttempt(){
   }
 }
 
-// function filterTravs(allTravelers, userID) {
-//   console.log(allTravelers)
-//   const justUser = allTravelers[0].filter((traveler)=> {
-//     return traveler.id===userID
-//   })    
-//   console.log(justUser[0])
-//   return justUser[0]
-// }
+function completeCurrentUser(currentUser, allTrips, allTravelers){
+  currentUser = filterTravs(allTravelers, userID)
+  const filteredTrips = filterTrips(allTrips, userID)
+  const fullUser = {
+    ...currentUser,
+    tripData: filteredTrips || []
+  }
+  console.log(fullUser, "fullUser")
+  return fullUser
+}
+
+function filterTravs(allTravelers, userID) {
+  console.log(allTravelers, "allTrvaelers")
+  const justUser = allTravelers.filter((traveler)=> {
+    return traveler.id===userID
+  })    
+  console.log(justUser[0], "just user first value")
+  //returns the object of the user matching the userID
+  return justUser[0]
+}
 
 function filterTrips(allTrips, userID) {
-  console.log(allTrips)
-  const justTrips = allTrips[0].filter((trip)=> {
+  console.log(allTrips, "all trips")
+  const justTrips = allTrips.filter((trip)=> {
     return trip.userID===userID
   })    
   console.log(justTrips, "justTrips")
+  //returns an array of trips that match the userID
   return justTrips
 }
 
-function sortTrips(currentUserTrips, pastToDisplay, futureToDisplay, pendingToDisplay){
+function sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay){
   const dateToday = new Date();
-  const trips = currentUserTrips.forEach((trip)=>{
+  fullLoggedInUser.tripData.forEach((trip)=>{
     const tripDateDeparted = new Date(trip.date)
     if (trip.status === 'approved') {
       if (tripDateDeparted > dateToday) {
@@ -90,19 +96,19 @@ function sortTrips(currentUserTrips, pastToDisplay, futureToDisplay, pendingToDi
     }
   }) 
   console.log(pastToDisplay)
-  displayTrips(pastToDisplay, pendingToDisplay, futureToDisplay)
+  // displayTrips(pastToDisplay, pendingToDisplay, futureToDisplay)
 }
 
-//iterate through currentUserTrips, check for dates before date.now and with status approved and return those for pastDisplay
-// check for dates after date.now and with status approved and return those for futureDisplay
-// check for status pending and return those for pendingDisplay
 
 module.exports = {
   loginAttempt,
-  // filterTravs,
+  filterTravs,
   sortTrips,
   filterTrips,
+  currentUser,
   pastToDisplay,
   pendingToDisplay,
-  futureToDisplay
+  futureToDisplay,  
+  completeCurrentUser,
+ 
 }

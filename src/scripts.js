@@ -4,17 +4,23 @@
 import './css/styles.css';
 
 import {  
-  // getTravelers,
-  getTrips,
-  getDestinations,
+  allTravelers,
+  allTrips,
+  allDestinations,
   postTrip,
   fetchAllGET
 } from './apiCalls';
 
 import {
   loginAttempt,
+  filterTravs,
   sortTrips,
   filterTrips,
+  currentUser,
+  pastToDisplay,
+  pendingToDisplay,
+  futureToDisplay,  
+  completeCurrentUser,
 } from './scriptDefinitions';
 
 import {  
@@ -37,5 +43,22 @@ import {
 import './images/turing-logo.png'
 ////////Event Listeners/////////
 
-loginButton.addEventListener('click', loginAttempt);
+loginButton.addEventListener('click', () => {
+  fetchAllGET()
+    .then((data)=>{
+      loginAttempt()
+      const fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers)
+      console.log(fullLoggedInUser, "full logged in user")
+      sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
+      // currentUserTrips = filterTrips(allTrips, userID)
+      // currentUser = filterTravs(allTravelers, userID)
+      // return currentUserTrips
+      // })
+      // .then((currentUserTrips) => {
+        // sortedTrips = sortTrips(currentUserTrips, pastToDisplay, futureToDisplay, pendingToDisplay)
+        // return sortedTrips
+        
+      })
+
+});
 
