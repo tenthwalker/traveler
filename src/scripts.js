@@ -52,7 +52,7 @@ loginButton.addEventListener('click', () => {
       console.log(fullLoggedInUser, "full logged in user")
       sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
       console.log(fullLoggedInUser, "sorted data full user")
-      displayTrips(fullLoggedInUser.tripData.filteredTrips.past, fullLoggedInUser.tripData.filteredTrips.future, fullLoggedInUser.tripData.filteredTrips.pending)
+      displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
       })
 });
 

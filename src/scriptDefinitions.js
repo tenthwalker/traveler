@@ -53,7 +53,7 @@ function completeCurrentUser(currentUser, allTrips, allTravelers, allDestination
   const filteredDests = filterDestinations(filteredTrips, allDestinations, destinationsToDisplay)
   const fullUser = {
     ...currentUser,
-    tripData: { filteredTrips: filteredTrips, filteredDests: filteredDests } || []
+    tripData: filteredDests || []
   }
   console.log(fullUser, "fullUser")
   return fullUser
@@ -76,21 +76,24 @@ function filterTrips(allTrips, userID) {
   return justTrips
 }
 
-function filterDestinations(justTrips, allDestinations, destinationsToDisplay) {
+function filterDestinations(filteredTrips, allDestinations, destinationsToDisplay) {
   //forEach filtered trips, check for matching destination ID to allDestinations with a filter
-  justTrips.forEach((trip)=>{
+  filteredTrips.forEach((trip)=>{
     const matchedTrips = allDestinations.find((destination)=>{
       return destination.id === trip.destinationID
     })
+    trip.destination = matchedTrips
     destinationsToDisplay.push(matchedTrips)
     return destinationsToDisplay
   })
-console.log(destinationsToDisplay)
+  console.log(filteredTrips, "filteredTrips")
+console.log(destinationsToDisplay, "destinationsToDisplay")
+return filteredTrips
 }
 
 function sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay){
   const dateToday = new Date();
-  fullLoggedInUser.tripData.filteredTrips.forEach((trip)=>{
+  fullLoggedInUser.tripData.forEach((trip)=>{
     const tripDateDeparted = new Date(trip.date)
     if (trip.status === 'approved') {
       if (tripDateDeparted > dateToday) {
@@ -105,7 +108,7 @@ function sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDi
       return pendingToDisplay
     }
   }) 
-  return fullLoggedInUser.tripData.filteredTrips = {
+  return fullLoggedInUser.tripData = {
     past: pastToDisplay,
     pending: pendingToDisplay,
     future: futureToDisplay
