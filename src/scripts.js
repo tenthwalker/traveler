@@ -50,6 +50,7 @@ loginButton.addEventListener('click', () => {
       const fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers)
       console.log(fullLoggedInUser, "full logged in user")
       sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
+      console.log(fullLoggedInUser, "sorted data full user")
       // currentUserTrips = filterTrips(allTrips, userID)
       // currentUser = filterTravs(allTravelers, userID)
       // return currentUserTrips

@@ -95,7 +95,11 @@ function sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDi
       return pendingToDisplay
     }
   }) 
-  console.log(pastToDisplay)
+  return fullLoggedInUser.tripData = {
+    past: pastToDisplay,
+    pending: pendingToDisplay,
+    future: futureToDisplay
+  }
   // displayTrips(pastToDisplay, pendingToDisplay, futureToDisplay)
 }
 
