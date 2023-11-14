@@ -13,6 +13,7 @@ const totalSpent = document.querySelector('#totalSpent');
 
 ///////Update Functions////////
 function displayTrips(pastArray, futureArray, pendingArray) {
+  console.log(pastArray, "pastArray param")
   pastDisplay(pastArray);
   futureDisplay(futureArray);
   pendingDisplay(pendingArray);
@@ -20,17 +21,26 @@ function displayTrips(pastArray, futureArray, pendingArray) {
 
 function pastDisplay(pastArray) {
   pastTrips.innerHTML = ''
-  pastTrips.innerHTML = `<h2>Past Trips</h2><p>Guests: ${pastArray.travelers}</p><p>Departure: ${pastArray.date}</p><p>Destination: ${pastArray.destinationID}</p>`
+  pastTrips.innerHTML += '<h2>Past Trips</h2>'
+  pastArray.forEach((trip)=>{  
+    pastTrips.innerHTML += `<p>Destination: ${trip.destinationID}</p><p>Guests: ${trip.travelers}</p><p>Departure: ${trip.date}</p>`
+  })
 }
 
 function futureDisplay(futureArray) {
   futureTrips.innerHTML = ''
-  futureTrips.innerHTML = `<h2>Future Trips</h2><p>Guests: ${futureArray.travelers}</p><p>Departure: ${futureArray.date}</p><p>Destination: ${futureArray.destinationID}</p>`
+  futureTrips.innerHTML += '<h2>Future Trips</h2>'
+  futureArray.forEach((trip)=>{  
+    futureTrips.innerHTML += `<p>Guests: ${trip.travelers}</p><p>Departure: ${trip.date}</p><p>Destination: ${trip.destinationID}</p>`
+  })
 }
 
 function pendingDisplay(pendingArray) {
   pendingTrips.innerHTML = ''
-  pendingTrips.innerHTML = `<h2>Pending Trips</h2><p>Guests: ${pendingArray.travelers}</p><p>Departure: ${pendingArray.date}</p><p>Destination: ${pendingArray.destinationID}</p>`
+  pendingTrips.innerHTML += '<h2>Pending Trips</h2>'
+  pendingArray.forEach((trip)=>{  
+    pendingTrips.innerHTML += `<p>Destination: ${trip.destinationID}</p><p>Guests: ${trip.travelers}</p><p>Departure: ${trip.date}</p>`
+  })
 }
 
 export {
