@@ -9,7 +9,11 @@ const pastTrips = document.querySelector('#pastTrips');
 const futureTrips = document.querySelector('#futureTrips');
 const pendingTrips = document.querySelector('#pendingTrips');
 const totalSpent = document.querySelector('#totalSpent');
-
+const departInput = document.querySelector('#departDate');
+const durationInput = document.querySelector('#tripDuration');
+const headcountInput = document.querySelector('#headcount');
+const destInput = document.querySelector('#tripDest');
+const requestButton = document.querySelector('#submitRequest');
 
 ///////Update Functions////////
 function displayTrips(pastArray, futureArray, pendingArray) {
@@ -43,6 +47,15 @@ function pendingDisplay(pendingArray) {
   })
 }
 
+function populateDropdown(destArray) {
+  destArray.forEach(dest => {
+    const newOption = document.createElement("option")
+    newOption.textContent = `${dest.destination}`
+    newOption.value = `${dest.id}`
+    destInput.appendChild(newOption)
+  })
+}
+
 export {
   loginButton,
   usernameField,
@@ -54,8 +67,14 @@ export {
   futureTrips,
   tripView,
   totalSpent,
+  departInput,
+  durationInput, 
+  destInput,
+  headcountInput,
+  requestButton,
   displayTrips,
   pastDisplay,
   futureDisplay,
   pendingDisplay,
+  populateDropdown
 }

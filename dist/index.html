@@ -18,11 +18,14 @@
   <main>
     <section class="hidden" id="dashboard">
       <div id="inputBlock">
-        <input type="text" placeholder="departure yyyy/mm/dd" id="departDate"></input>
-        <input type="text" placeholder="number of days" id="tripDuration"></input>
-        <input type="text" placeholder="destination" id="tripDest"></input>
-        <input type="text" placeholder="number of travelers" id="headcount"></input>
+        <input type="text" placeholder="departure yyyy/mm/dd" id="departDate" required></input>
+        <input type="text" placeholder="number of days" id="tripDuration" required></input>
+        <input type="text" placeholder="number of travelers" id="headcount" required></input>
+        <select id="tripDest" name="destination" required>
+          <option value="" selected>destination</option>
+        </select>
         <p class="trip-block hidden" id="costDisplay"></p>
+        <button id="submitRequest">submit</button>
       </div>
       <article class="overview">
         <div class="trip-block" id="pastTrips"></div>
