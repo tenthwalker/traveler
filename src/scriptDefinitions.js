@@ -27,6 +27,7 @@ const {
   pendingTrips,
   pastTrips,
   futureTrips,
+  showPrice,
   tripView,
   totalSpent,
   departInput,
@@ -37,6 +38,7 @@ const {
   displayTrips,
   pastDisplay,
   futureDisplay,
+  priceBlock,
   pendingDisplay,
   populateDropdown
 } = require("./domUpdates");
@@ -134,13 +136,21 @@ function makeNewTrip(allTrips, userID, departInput, durationInput, destInput, he
   const newTripDate = new Date(newTrip.date)
   if(dateToday < newTripDate){
     return newTrip
-  } else {
-    alert("Please pick a date in the future for your trip.")
+  // } else {
+  //   alert("Please pick a date in the future for your trip.")
   }
 }
 
-function findEstimatedCost() {
-  //calculated from makeNewTrip and allDestinations, plus a 10% agent fee
+function findEstimatedCost(newTrip, allDestinations) {
+  if(departInput.value && durationInput.value && destInput.value && headcountInput.value){
+    let totalCost;
+    const destProposed = allDestinations.find((destination)=>{
+      return destination.id === newTrip.destinationID
+    })
+    totalCost = ((newTrip.travelers * destProposed.estimatedFlightCostPerPerson) + (destProposed.estimatedLodgingCostPerDay * newTrip.duration));
+    console.log(totalCost);
+    return totalCost += (totalCost * .1);
+  }
 }
 
 function findAnnualSpend() {

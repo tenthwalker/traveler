@@ -34,11 +34,13 @@ import {
   usernameField,
   passwordField,
   loginView,
+  priceBlock,
   mainView,
   pendingTrips,
   pastTrips,
   futureTrips,
   tripView,
+  showPrice,
   totalSpent,
   departInput,
   durationInput, 
@@ -72,6 +74,19 @@ loginButton.addEventListener('click', () => {
     })
 });
 
+departInput.addEventListener('input', () => {
+   showPrice(findEstimatedCost(makeNewTrip(allTrips, fullLoggedInUser.id, departInput, durationInput, destInput, headcountInput), allDestinations))
+});
+destInput.addEventListener('input', () => {
+  showPrice(findEstimatedCost(makeNewTrip(allTrips, fullLoggedInUser.id, departInput, durationInput, destInput, headcountInput), allDestinations))
+});
+headcountInput.addEventListener('input', () => {
+  showPrice(findEstimatedCost(makeNewTrip(allTrips, fullLoggedInUser.id, departInput, durationInput, destInput, headcountInput), allDestinations))
+});
+durationInput.addEventListener('input', () => {
+  showPrice(findEstimatedCost(makeNewTrip(allTrips, fullLoggedInUser.id, departInput, durationInput, destInput, headcountInput), allDestinations))
+});
+
 requestButton.addEventListener('click', () => {
   fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers, allDestinations)
   postTrip(makeNewTrip(allTrips, fullLoggedInUser.id, departInput, durationInput, destInput, headcountInput))
@@ -83,6 +98,7 @@ requestButton.addEventListener('click', () => {
     headcountInput.value = ''
     departInput.value = ''
     durationInput.value = ''
+    costDisplay.innerHTML = 'Proposed trip cost: $'
   })
   .catch(error => {
     alert("Something went wrong: failed to post new trip.")

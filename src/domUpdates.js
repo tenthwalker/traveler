@@ -14,6 +14,7 @@ const durationInput = document.querySelector('#tripDuration');
 const headcountInput = document.querySelector('#headcount');
 const destInput = document.querySelector('#tripDest');
 const requestButton = document.querySelector('#submitRequest');
+const priceBlock = document.querySelector('#costDisplay');
 
 ///////Update Functions////////
 function displayTrips(pastArray, futureArray, pendingArray) {
@@ -56,6 +57,11 @@ function populateDropdown(destArray) {
   })
 }
 
+function showPrice(totalCost) {
+  priceBlock.innerHTML = ''
+  priceBlock.innerHTML = `Proposed trip cost: $${totalCost}`
+}
+
 export {
   loginButton,
   usernameField,
@@ -63,6 +69,7 @@ export {
   loginView,
   mainView,
   pendingTrips,
+  priceBlock,
   pastTrips,
   futureTrips,
   tripView,
@@ -71,6 +78,7 @@ export {
   durationInput, 
   destInput,
   headcountInput,
+  showPrice,
   requestButton,
   displayTrips,
   pastDisplay,
