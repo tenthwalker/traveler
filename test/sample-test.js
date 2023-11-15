@@ -253,7 +253,28 @@ describe('filterTravs', function(){
 })
 
 describe('filterTrips', function(){
-  
+  it('should return trips for a specified userID', () => {
+    const result = filterTrips(trips, userID);
+
+    expect(result).to.deep.equal([
+      {
+        "id": 117,
+        "userID": 1,
+        "destinationID": 28,
+        "travelers": 3,
+        "date": "2021/01/09",
+        "duration": 15,
+        "status": "approved",
+        "suggestedActivities": []
+      }
+    ]);
+  });
+
+  it('should return an empty array if the filter does not find a matching ID', () => {
+    const result = filterTrips(trips, 3);
+
+    expect(result).to.deep.equal([]);
+  });
 })
 
 // describe('filterDestinations', function(){})
