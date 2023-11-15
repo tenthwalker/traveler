@@ -21,6 +21,8 @@ import {
   userID,
   pastToDisplay,
   filterDestinations,
+  findEstimatedCost,
+  findAnnualSpend,
   pendingToDisplay,
   futureToDisplay,  
   completeCurrentUser,

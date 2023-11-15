@@ -139,11 +139,22 @@ function makeNewTrip(allTrips, userID, departInput, durationInput, destInput, he
   }
 }
 
+function findEstimatedCost() {
+  //calculated from makeNewTrip and allDestinations, plus a 10% agent fee
+}
+
+function findAnnualSpend() {
+  //calculated from trips (split date and check for match against year data compared to dateToday) and 10% agent fee
+}
+
+
 module.exports = {
   loginAttempt,
+  findAnnualSpend,
   filterTravs,
   newTrip,
   sortTrips,
+  findEstimatedCost,
   userID,
   filterDestinations,
   filterTrips,
