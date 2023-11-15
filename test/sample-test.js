@@ -277,7 +277,85 @@ describe('filterTrips', function(){
   });
 })
 
-// describe('filterDestinations', function(){})
+describe('filterDestinations', function(){
+  it('should add destination info to each trip in the filteredTrips array', () => {
+    const filteredTrips = [...trips];
+    const destinationsToDisplay = [];
+    
+    filterDestinations(filteredTrips, destinations, destinationsToDisplay);
+
+    expect(filteredTrips).to.deep.equal([
+      {
+        "id": 117,
+        "userID": 1,
+        "destinationID": 28,
+        "travelers": 3,
+        "date": "2021/01/09",
+        "duration": 15,
+        "status": "approved",
+        "suggestedActivities": [],
+        "destination": {
+          "id": 28,
+          "destination": "San Juan, Puerto Rico",
+          "estimatedLodgingCostPerDay": 70,
+          "estimatedFlightCostPerPerson": 900,
+          "image": "https://images.unsplash.com/photo-1580237541049-2d715a09486e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2090&q=80",
+          "alt": "white and brown concrete buildings near sea under white clouds during daytime"
+        }
+      }
+    ]);
+
+    expect(destinationsToDisplay).to.deep.equal([
+      {
+        "id": 28,
+        "destination": "San Juan, Puerto Rico",
+        "estimatedLodgingCostPerDay": 70,
+        "estimatedFlightCostPerPerson": 900,
+        "image": "https://images.unsplash.com/photo-1580237541049-2d715a09486e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2090&q=80",
+        "alt": "white and brown concrete buildings near sea under white clouds during daytime"
+      }
+    ]);
+  });
+
+ it('should add destination info to each trip in the filteredTrips array', () => {
+    const filteredTrips = [...trips];
+    const destinationsToDisplay = [];
+    
+    filterDestinations(filteredTrips, destinations, destinationsToDisplay);
+
+    expect(filteredTrips).to.deep.equal([
+      {
+        "id": 117,
+        "userID": 1,
+        "destinationID": 28,
+        "travelers": 3,
+        "date": "2021/01/09",
+        "duration": 15,
+        "status": "approved",
+        "suggestedActivities": [],
+        "destination": {
+          "id": 28,
+          "destination": "San Juan, Puerto Rico",
+          "estimatedLodgingCostPerDay": 70,
+          "estimatedFlightCostPerPerson": 900,
+          "image": "https://images.unsplash.com/photo-1580237541049-2d715a09486e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2090&q=80",
+          "alt": "white and brown concrete buildings near sea under white clouds during daytime"
+        }
+      }
+    ]);
+
+    expect(destinationsToDisplay).to.deep.equal([
+      {
+        "id": 28,
+        "destination": "San Juan, Puerto Rico",
+        "estimatedLodgingCostPerDay": 70,
+        "estimatedFlightCostPerPerson": 900,
+        "image": "https://images.unsplash.com/photo-1580237541049-2d715a09486e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2090&q=80",
+        "alt": "white and brown concrete buildings near sea under white clouds during daytime"
+      }
+    ]);
+  });
+});
 
 // describe('sortTrips', function(){})
 
