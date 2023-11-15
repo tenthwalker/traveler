@@ -14,6 +14,8 @@ const durationInput = document.querySelector('#tripDuration');
 const headcountInput = document.querySelector('#headcount');
 const destInput = document.querySelector('#tripDest');
 const requestButton = document.querySelector('#submitRequest');
+const priceBlock = document.querySelector('#costDisplay');
+const annualSpend = document.querySelector('#annual');
 
 ///////Update Functions////////
 function displayTrips(pastArray, futureArray, pendingArray) {
@@ -56,14 +58,26 @@ function populateDropdown(destArray) {
   })
 }
 
+function showPrice(totalCost) {
+  priceBlock.innerHTML = ''
+  priceBlock.innerHTML = `Proposed trip cost: $${totalCost}`
+}
+
+function showAnnual(annualSpendTotal) {
+  annualSpend.innerHTML = `This year's spend (inclusive of 10% agent fee): $${annualSpendTotal}`
+}
+
 export {
   loginButton,
   usernameField,
   passwordField,
   loginView,
   mainView,
+  showAnnual,
   pendingTrips,
+  priceBlock,
   pastTrips,
+  annualSpend,
   futureTrips,
   tripView,
   totalSpent,
@@ -71,6 +85,7 @@ export {
   durationInput, 
   destInput,
   headcountInput,
+  showPrice,
   requestButton,
   displayTrips,
   pastDisplay,

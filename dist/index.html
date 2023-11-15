@@ -24,14 +24,17 @@
         <select id="tripDest" name="destination" required>
           <option value="" selected>destination</option>
         </select>
-        <p class="trip-block hidden" id="costDisplay"></p>
+        <p id="costDisplay">Proposed trip cost: $</p>
         <button id="submitRequest">submit</button>
       </div>
       <article class="overview">
         <div class="trip-block" id="pastTrips"></div>
         <div class="trip-block" id="futureTrips"></div>
         <div class="trip-block" id="pendingTrips"></div>
-        <div class="trip-block" id="totalSpent"></div>
+        <div class="trip-block" id="totalSpent">
+          <h2>Total Spent</h2>
+          <p id="annual"></p>
+        </div>
       </article>
     </section>
   </main>

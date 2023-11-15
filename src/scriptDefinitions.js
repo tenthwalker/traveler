@@ -7,6 +7,7 @@ let futureToDisplay = [];
 let newTrip;
 let dateToday;
 let pendingToDisplay = [];
+let formattedDate;
 
 const {
   allTravelers,
@@ -27,6 +28,7 @@ const {
   pendingTrips,
   pastTrips,
   futureTrips,
+  showPrice,
   tripView,
   totalSpent,
   departInput,
@@ -37,6 +39,7 @@ const {
   displayTrips,
   pastDisplay,
   futureDisplay,
+  priceBlock,
   pendingDisplay,
   populateDropdown
 } = require("./domUpdates");
@@ -130,13 +133,61 @@ function makeNewTrip(allTrips, userID, departInput, durationInput, destInput, he
     status: "pending",
     suggestedActivities: [],
   }
-  dateToday = Date.now();
+  dateToday = new Date();
   const newTripDate = new Date(newTrip.date)
   if(dateToday < newTripDate){
     return newTrip
-  } else {
-    alert("Please pick a date in the future for your trip.")
+  // } else {
+  //   alert("Please pick a date in the future for your trip.")
   }
+}
+
+function findEstimatedCost(newTrip, allDestinations) {
+  if(departInput.value && durationInput.value && destInput.value && headcountInput.value){
+    let totalCost;
+    const destProposed = allDestinations.find((destination)=>{
+      return destination.id === newTrip.destinationID
+    })
+    totalCost = ((newTrip.travelers * destProposed.estimatedFlightCostPerPerson) + (destProposed.estimatedLodgingCostPerDay * newTrip.duration));
+    console.log(totalCost);
+    return totalCost += (totalCost * .1);
+  }
+}
+
+function formatDate(date) {
+  formattedDate = date.getFullYear() + "/" + (date.getMonth() + 1 ) + "/" + date.getDate();
+  return formattedDate;
+}
+
+function findAnnualSpend(fullLoggedInUser) {
+  console.log(fullLoggedInUser, "fullLog")
+  let totalCost = 0;
+  dateToday = formatDate(new Date()).split('/')
+  const userTrips = fullLoggedInUser.tripData.pending.filter((trip)=>{
+    const tripDate = new Date(trip.date);
+  return checkTripYear(tripDate, 2023);
+  });
+  console.log(userTrips, "userTrips")
+  userTrips.forEach((trip) => {
+    const tripComboCost = calculateTripCost(trip)
+    totalCost += tripComboCost;
+  });
+  console.log(totalCost, "totalCost")
+  return totalCost;
+}
+
+function calculateTripCost(trip) {
+  // console.log(trip, "trip")
+  const flightPP = trip.destination.estimatedFlightCostPerPerson
+  const lodgingPD = trip.destination.estimatedLodgingCostPerDay
+  const travelers = trip.travelers
+  const duration = trip.duration
+  let tripCost = (travelers * flightPP) + (travelers * lodgingPD * duration) * 1.1
+  return tripCost
+}
+
+function checkTripYear(formattedDate, year) {
+  return formattedDate.getFullYear() === year
 }
 
 module.exports = {
@@ -144,9 +195,11 @@ module.exports = {
   filterTravs,
   newTrip,
   sortTrips,
+  findEstimatedCost,
   userID,
   filterDestinations,
   filterTrips,
+  findAnnualSpend,
   currentUser,
   destinationsToDisplay,
   pastToDisplay,

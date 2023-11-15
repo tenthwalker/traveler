@@ -21,8 +21,10 @@ import {
   userID,
   pastToDisplay,
   filterDestinations,
+  findEstimatedCost,
   pendingToDisplay,
   futureToDisplay,  
+  findAnnualSpend,
   completeCurrentUser,
   makeNewTrip,
 } from './scriptDefinitions';
@@ -32,11 +34,15 @@ import {
   usernameField,
   passwordField,
   loginView,
+  priceBlock,
   mainView,
   pendingTrips,
   pastTrips,
   futureTrips,
   tripView,
+  showAnnual,
+  annualSpend,
+  showPrice,
   totalSpent,
   departInput,
   durationInput, 
@@ -66,8 +72,22 @@ loginButton.addEventListener('click', () => {
       // console.log(fullLoggedInUser, "sorted data full user")
       displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
       populateDropdown(allDestinations)
+      showAnnual(findAnnualSpend(fullLoggedInUser))
       return fullLoggedInUser
     })
+});
+
+departInput.addEventListener('input', () => {
+   showPrice(findEstimatedCost(makeNewTrip(allTrips, fullLoggedInUser.id, departInput, durationInput, destInput, headcountInput), allDestinations))
+});
+destInput.addEventListener('input', () => {
+  showPrice(findEstimatedCost(makeNewTrip(allTrips, fullLoggedInUser.id, departInput, durationInput, destInput, headcountInput), allDestinations))
+});
+headcountInput.addEventListener('input', () => {
+  showPrice(findEstimatedCost(makeNewTrip(allTrips, fullLoggedInUser.id, departInput, durationInput, destInput, headcountInput), allDestinations))
+});
+durationInput.addEventListener('input', () => {
+  showPrice(findEstimatedCost(makeNewTrip(allTrips, fullLoggedInUser.id, departInput, durationInput, destInput, headcountInput), allDestinations))
 });
 
 requestButton.addEventListener('click', () => {
@@ -77,10 +97,12 @@ requestButton.addEventListener('click', () => {
     fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers, allDestinations)
     sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
     displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
+    showAnnual(findAnnualSpend(fullLoggedInUser))
     destInput.value = ''
     headcountInput.value = ''
     departInput.value = ''
     durationInput.value = ''
+    costDisplay.innerHTML = 'Proposed trip cost: $'
   })
   .catch(error => {
     alert("Something went wrong: failed to post new trip.")

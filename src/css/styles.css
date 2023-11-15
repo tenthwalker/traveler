@@ -6,7 +6,7 @@ body {
   width: 100vw;
 }
 
-body, main, section, .trip-block, .overview {
+body, main, section, .trip-block, .overview, #inputBlock {
   display: flex;
 }
 
@@ -27,8 +27,8 @@ img {
 button {
   border: 3px solid white;
   background-color: #B4869F;
-  height: 15%;
-  width: 15%;
+  height: 25px;
+  width: 60px;
 }
 
 #dashboard, #login {
@@ -52,6 +52,10 @@ button {
   width: 75vw;
 }
 
+#inputBlock {
+  justify-content: space-evenly;
+}
+
 #login {
   height: 30%;
   justify-content: space-evenly;
@@ -61,4 +65,13 @@ button {
 #dashboard {
   width: 75vw;
   height: 100vh;
+  overflow: wrap;
+}
+
+#costDisplay {
+  background-color: white;
+  color:  #0A090C;
+  margin: 0;
+  height: 20px;
+  width: 300px;
 }
