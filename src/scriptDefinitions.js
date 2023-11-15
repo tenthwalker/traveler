@@ -4,6 +4,7 @@ let userID;
 let destinationsToDisplay = [];
 let pastToDisplay = [];
 let futureToDisplay = [];
+let newTrip;
 let dateToday;
 let pendingToDisplay = [];
 
@@ -48,6 +49,7 @@ function loginAttempt(){
   if (usernameField.value === 'traveler' + usernameID[1] && userID >= 1 && userID <= 50 && passwordField.value === 'travel') {
     loginView.classList.add('hidden');
     mainView.classList.remove('hidden');
+    return userID
   } else {
     alert('Please verify that you have entered a correct username and password before trying again.');
     usernameField.innerHTML = '';
@@ -78,7 +80,6 @@ function filterTrips(allTrips, userID) {
   const justTrips = allTrips.filter((trip)=> {
     return trip.userID===userID
   })
-  console.log(justTrips, "justTrips")
   return justTrips
 }
 
@@ -91,8 +92,6 @@ function filterDestinations(filteredTrips, allDestinations, destinationsToDispla
     destinationsToDisplay.push(matchedTrips)
     return destinationsToDisplay
   })
-  console.log(filteredTrips, "filteredTrips")
-console.log(destinationsToDisplay, "destinationsToDisplay")
 return filteredTrips
 }
 
@@ -120,20 +119,20 @@ function sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDi
   }
 }
 
-function makeNewTrip(allTrips, departInput, durationInput, destInput, headcountInput) {
-  const newTrip = {
+function makeNewTrip(allTrips, userID, departInput, durationInput, destInput, headcountInput) {
+  newTrip = {
     id: allTrips.length+1,
     userID: userID,
     destinationID: parseInt(destInput.value),
     travelers: parseInt(headcountInput.value),
-    date: parseInt(departInput.value),
+    date: departInput.value,
     duration: parseInt(durationInput.value),
     status: "pending",
     suggestedActivities: [],
   }
-  dateToday = new Date();
+  dateToday = Date.now();
   const newTripDate = new Date(newTrip.date)
-  if(dateToday > newTripDate){
+  if(dateToday < newTripDate){
     return newTrip
   } else {
     alert("Please pick a date in the future for your trip.")
@@ -143,7 +142,9 @@ function makeNewTrip(allTrips, departInput, durationInput, destInput, headcountI
 module.exports = {
   loginAttempt,
   filterTravs,
+  newTrip,
   sortTrips,
+  userID,
   filterDestinations,
   filterTrips,
   currentUser,

@@ -12,7 +12,7 @@ const totalSpent = document.querySelector('#totalSpent');
 const departInput = document.querySelector('#departDate');
 const durationInput = document.querySelector('#tripDuration');
 const headcountInput = document.querySelector('#headcount');
-const destInput = document.querySelector('#destination');
+const destInput = document.querySelector('#tripDest');
 const requestButton = document.querySelector('#submitRequest');
 
 ///////Update Functions////////
@@ -48,9 +48,12 @@ function pendingDisplay(pendingArray) {
 }
 
 function populateDropdown(destArray) {
-  destInput.innerHTML = destArray.map(dest => {
-    return `<option value = ${dest.id}>${dest.destination}</option>`
-  }).join('')
+  destArray.forEach(dest => {
+    const newOption = document.createElement("option")
+    newOption.textContent = `${dest.destination}`
+    newOption.value = `${dest.id}`
+    destInput.appendChild(newOption)
+  })
 }
 
 export {
