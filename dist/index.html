@@ -10,18 +10,20 @@
   <title>Travel Tracker</title>
 </head>
 <body>
+  <h1>Travel Agency</h1>
   <section id="login">
-    <input type="text" placeholder="username" id="username"></input>
-    <input type="text" placeholder="password" id="password"></input>
+    <input type="text" aria-label="username input" placeholder="username" id="username"></input>
+    <input type="text" aria-label="password input" placeholder="password" id="password"></input>
     <button id="submitLogin">submit</button>
   </section>
   <main>
     <section class="hidden" id="dashboard">
+      <h2 id="welcome">Welcome, Traveler!</h2>
       <div id="inputBlock">
-        <input type="text" placeholder="departure yyyy/mm/dd" id="departDate" required></input>
-        <input type="text" placeholder="number of days" id="tripDuration" required></input>
-        <input type="text" placeholder="number of travelers" id="headcount" required></input>
-        <select id="tripDest" name="destination" required>
+        <input type="text" aria-label='departure date input' placeholder="departure yyyy/mm/dd" id="departDate" required></input>
+        <input type="text" aria-label='duration in days input' placeholder="number of days" id="tripDuration" required></input>
+        <input type="text" aria-label='number of travelers input' placeholder="number of travelers" id="headcount" required></input>
+        <select id="tripDest" aria-label="destination dropdown selection" name="destination" required>
           <option value="" selected>destination</option>
         </select>
         <p id="costDisplay">Proposed trip cost: $</p>
