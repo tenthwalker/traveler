@@ -94,9 +94,9 @@ function fetchAllGET() {
 }
 
 export {
-  getTravelers,
-  getTrips,
-  getDestinations,
+  allTravelers,
+  allTrips,
+  allDestinations,
   postTrip,
   fetchAllGET
 }
