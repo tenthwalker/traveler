@@ -72,7 +72,7 @@ loginButton.addEventListener('click', () => {
       // console.log(fullLoggedInUser, "sorted data full user")
       displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
       populateDropdown(allDestinations)
-      findAnnualSpend(fullLoggedInUser)
+      showAnnual(findAnnualSpend(fullLoggedInUser))
       return fullLoggedInUser
     })
 });
@@ -97,7 +97,7 @@ requestButton.addEventListener('click', () => {
     fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers, allDestinations)
     sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
     displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
-    findAnnualSpend(fullLoggedInUser)
+    showAnnual(findAnnualSpend(fullLoggedInUser))
     destInput.value = ''
     headcountInput.value = ''
     departInput.value = ''

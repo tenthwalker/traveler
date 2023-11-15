@@ -64,7 +64,7 @@ function showPrice(totalCost) {
 }
 
 function showAnnual(annualSpendTotal) {
-  annualSpend.innerHTML = `This year's spend (inclusive of 10% agent fee): ${annualSpendTotal}`
+  annualSpend.innerHTML = `This year's spend (inclusive of 10% agent fee): $${annualSpendTotal}`
 }
 
 export {

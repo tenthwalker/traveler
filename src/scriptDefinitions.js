@@ -161,29 +161,27 @@ function formatDate(date) {
 
 function findAnnualSpend(fullLoggedInUser) {
   console.log(fullLoggedInUser, "fullLog")
-  let totalCost = 0;  
+  let totalCost = 0;
   dateToday = formatDate(new Date()).split('/')
-  // const userTrips = fullLoggedInUser.tripData.pending.filter((trip)=>{
-  //   const tripDate = new Date(trip.destination.date);
-  //   return checkTripYear(tripDate, 2023);
-  // });
-  // console.log(userTrips, "userTrips")
-  // userTrips.forEach((trip) => {
-  //   const tripComboCost = calculateTripCost(fullLoggedInUser)
-  //   totalCost += tripComboCost;
-  // });
+  const userTrips = fullLoggedInUser.tripData.pending.filter((trip)=>{
+    const tripDate = new Date(trip.date);
+  return checkTripYear(tripDate, 2023);
+  });
+  console.log(userTrips, "userTrips")
+  userTrips.forEach((trip) => {
+    const tripComboCost = calculateTripCost(trip)
+    totalCost += tripComboCost;
+  });
   console.log(totalCost, "totalCost")
   return totalCost;
-
 }
 
-function calculateTripCost(fullLoggedInUser) {
+function calculateTripCost(trip) {
   // console.log(trip, "trip")
-  const flightPP = fullLoggedInUser.tripData.pending.destination.estimatedFlightCostPerPerson
-  console.log(flightPP, "flightPP")
-  const lodgingPD = fullLoggedInUser.destination.estimatedLodgingCostPerDay
-  const travelers = fullLoggedInUser.destination.travelers
-  const duration = fullLoggedInUser.destination.duration
+  const flightPP = trip.destination.estimatedFlightCostPerPerson
+  const lodgingPD = trip.destination.estimatedLodgingCostPerDay
+  const travelers = trip.travelers
+  const duration = trip.duration
   let tripCost = (travelers * flightPP) + (travelers * lodgingPD * duration) * 1.1
   return tripCost
 }
