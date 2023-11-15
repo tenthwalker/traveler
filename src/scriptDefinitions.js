@@ -4,10 +4,12 @@ let userID;
 let destinationsToDisplay = [];
 let pastToDisplay = [];
 let futureToDisplay = [];
+let dateToday;
 let pendingToDisplay = [];
 
 const {
   allTravelers,
+  allTrips,
   getTrips,
   getDestinations,
   postTrip,
@@ -30,11 +32,12 @@ const {
   durationInput, 
   destInput,
   headcountInput,
-  // requestButton,
+  requestButton,
   displayTrips,
   pastDisplay,
   futureDisplay,
   pendingDisplay,
+  populateDropdown
 } = require("./domUpdates");
 
 
@@ -94,7 +97,7 @@ return filteredTrips
 }
 
 function sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay){
-  const dateToday = new Date();
+  dateToday = new Date();
   fullLoggedInUser.tripData.forEach((trip)=>{
     const tripDateDeparted = new Date(trip.date)
     if (trip.status === 'approved') {
@@ -117,18 +120,24 @@ function sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDi
   }
 }
 
-function makeNewTrip() {
+function makeNewTrip(allTrips, departInput, durationInput, destInput, headcountInput) {
   const newTrip = {
-    id: getTrips.length+1,
+    id: allTrips.length+1,
     userID: userID,
-    destinationID:
-    travelers:
-    date:
-    duration:
+    destinationID: parseInt(destInput.value),
+    travelers: parseInt(headcountInput.value),
+    date: parseInt(departInput.value),
+    duration: parseInt(durationInput.value),
     status: "pending",
     suggestedActivities: [],
   }
-
+  dateToday = new Date();
+  const newTripDate = new Date(newTrip.date)
+  if(dateToday > newTripDate){
+    return newTrip
+  } else {
+    alert("Please pick a date in the future for your trip.")
+  }
 }
 
 module.exports = {
@@ -143,4 +152,5 @@ module.exports = {
   pendingToDisplay,
   futureToDisplay,  
   completeCurrentUser,
+  makeNewTrip
 }

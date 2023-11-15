@@ -22,6 +22,7 @@ import {
   pendingToDisplay,
   futureToDisplay,  
   completeCurrentUser,
+  makeNewTrip,
 } from './scriptDefinitions';
 
 import {  
@@ -35,11 +36,16 @@ import {
   futureTrips,
   tripView,
   totalSpent,
-  displayTrips,
+  departInput,
+  durationInput, 
+  destInput,
+  headcountInput,
   requestButton,
+  displayTrips,
   pastDisplay,
   futureDisplay,
-  pendingDisplay, } from './domUpdates';
+  pendingDisplay,
+  populateDropdown, } from './domUpdates';
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
@@ -54,20 +60,24 @@ loginButton.addEventListener('click', () => {
       sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
       // console.log(fullLoggedInUser, "sorted data full user")
       displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
+      populateDropdown(allDestinations)
       })
 });
 
-// requestButton.addEventListener('click', () => {
-//   const = 
-//   const = 
-//   const = 
-//   const newTrip = {
-
-//   };
-//   postTrip()
-//   .then(addedData => {})
-//   .catch(error => {
-//     alert("Something went wrong: failed to post new trip.")
-//     console.log(error)
-//   })
-// })
+requestButton.addEventListener('click', () => {
+  makeNewTrip(allTrips, departInput, durationInput, destInput, headcountInput)
+  postTrip(newTrip)
+  .then(addedData => {
+    const fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers, allDestinations)
+    sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
+    displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
+    destInput.value = ''
+    headcountInput.value = ''
+    departInput.value = ''
+    durationInput.value = ''
+  })
+  .catch(error => {
+    alert("Something went wrong: failed to post new trip.")
+    console.log(error)
+  })
+})

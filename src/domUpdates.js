@@ -47,6 +47,12 @@ function pendingDisplay(pendingArray) {
   })
 }
 
+function populateDropdown(destArray) {
+  destInput.innerHTML = destArray.map(dest => {
+    return `<option value = ${dest.id}>${dest.destination}</option>`
+  }).join('')
+}
+
 export {
   loginButton,
   usernameField,
@@ -67,4 +73,5 @@ export {
   pastDisplay,
   futureDisplay,
   pendingDisplay,
+  populateDropdown
 }
