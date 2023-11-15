@@ -66,10 +66,7 @@ loginButton.addEventListener('click', () => {
     .then((data)=>{
       loginAttempt()
       fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers, allDestinations)
-      console.log(fullLoggedInUser, "userID")
-      // console.log(fullLoggedInUser, "full logged in user")
       sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
-      // console.log(fullLoggedInUser, "sorted data full user")
       displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
       populateDropdown(allDestinations)
       showAnnual(findAnnualSpend(fullLoggedInUser))
