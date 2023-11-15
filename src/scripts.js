@@ -36,6 +36,7 @@ import {
   tripView,
   totalSpent,
   displayTrips,
+  requestButton,
   pastDisplay,
   futureDisplay,
   pendingDisplay, } from './domUpdates';
@@ -49,10 +50,24 @@ loginButton.addEventListener('click', () => {
     .then((data)=>{
       loginAttempt()
       const fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers, allDestinations)
-      console.log(fullLoggedInUser, "full logged in user")
+      // console.log(fullLoggedInUser, "full logged in user")
       sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
-      console.log(fullLoggedInUser, "sorted data full user")
+      // console.log(fullLoggedInUser, "sorted data full user")
       displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
       })
 });
 
+// requestButton.addEventListener('click', () => {
+//   const = 
+//   const = 
+//   const = 
+//   const newTrip = {
+
+//   };
+//   postTrip()
+//   .then(addedData => {})
+//   .catch(error => {
+//     alert("Something went wrong: failed to post new trip.")
+//     console.log(error)
+//   })
+// })

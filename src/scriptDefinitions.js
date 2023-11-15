@@ -26,6 +26,11 @@ const {
   futureTrips,
   tripView,
   totalSpent,
+  departInput,
+  durationInput, 
+  destInput,
+  headcountInput,
+  // requestButton,
   displayTrips,
   pastDisplay,
   futureDisplay,
@@ -36,8 +41,8 @@ const {
 
 function loginAttempt(){
   let usernameID = usernameField.value.split('traveler');
-  if (usernameField.value === 'traveler' + usernameID[1] && passwordField.value === 'travel') {
-    userID = parseInt(usernameID[1])
+  userID = parseInt(usernameID[1])
+  if (usernameField.value === 'traveler' + usernameID[1] && userID >= 1 && userID <= 50 && passwordField.value === 'travel') {
     loginView.classList.add('hidden');
     mainView.classList.remove('hidden');
   } else {
@@ -71,13 +76,10 @@ function filterTrips(allTrips, userID) {
     return trip.userID===userID
   })
   console.log(justTrips, "justTrips")
-  // need to get just the trips that match the userID
-  //then need to get the destinations matching the trip id and add those to the fullUser filteredTrips data
   return justTrips
 }
 
 function filterDestinations(filteredTrips, allDestinations, destinationsToDisplay) {
-  //forEach filtered trips, check for matching destination ID to allDestinations with a filter
   filteredTrips.forEach((trip)=>{
     const matchedTrips = allDestinations.find((destination)=>{
       return destination.id === trip.destinationID
@@ -113,6 +115,20 @@ function sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDi
     pending: pendingToDisplay,
     future: futureToDisplay
   }
+}
+
+function makeNewTrip() {
+  const newTrip = {
+    id: getTrips.length+1,
+    userID: userID,
+    destinationID:
+    travelers:
+    date:
+    duration:
+    status: "pending",
+    suggestedActivities: [],
+  }
+
 }
 
 module.exports = {
