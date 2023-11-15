@@ -44,8 +44,6 @@ const {
   populateDropdown
 } = require("./domUpdates");
 
-
-
 function loginAttempt(){
   let usernameID = usernameField.value.split('traveler');
   userID = parseInt(usernameID[1])
@@ -137,8 +135,6 @@ function makeNewTrip(allTrips, userID, departInput, durationInput, destInput, he
   const newTripDate = new Date(newTrip.date)
   if(dateToday < newTripDate){
     return newTrip
-  // } else {
-  //   alert("Please pick a date in the future for your trip.")
   }
 }
 
@@ -149,7 +145,6 @@ function findEstimatedCost(newTrip, allDestinations) {
       return destination.id === newTrip.destinationID
     })
     totalCost = ((newTrip.travelers * destProposed.estimatedFlightCostPerPerson) + (destProposed.estimatedLodgingCostPerDay * newTrip.duration));
-    console.log(totalCost);
     return totalCost += (totalCost * .1);
   }
 }
@@ -160,24 +155,20 @@ function formatDate(date) {
 }
 
 function findAnnualSpend(fullLoggedInUser) {
-  console.log(fullLoggedInUser, "fullLog")
   let totalCost = 0;
   dateToday = formatDate(new Date()).split('/')
   const userTrips = fullLoggedInUser.tripData.pending.filter((trip)=>{
     const tripDate = new Date(trip.date);
   return checkTripYear(tripDate, 2023);
   });
-  console.log(userTrips, "userTrips")
   userTrips.forEach((trip) => {
     const tripComboCost = calculateTripCost(trip)
     totalCost += tripComboCost;
   });
-  console.log(totalCost, "totalCost")
   return totalCost;
 }
 
 function calculateTripCost(trip) {
-  // console.log(trip, "trip")
   const flightPP = trip.destination.estimatedFlightCostPerPerson
   const lodgingPD = trip.destination.estimatedLodgingCostPerDay
   const travelers = trip.travelers
