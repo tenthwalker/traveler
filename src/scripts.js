@@ -22,9 +22,9 @@ import {
   pastToDisplay,
   filterDestinations,
   findEstimatedCost,
-  findAnnualSpend,
   pendingToDisplay,
   futureToDisplay,  
+  findAnnualSpend,
   completeCurrentUser,
   makeNewTrip,
 } from './scriptDefinitions';
@@ -40,6 +40,8 @@ import {
   pastTrips,
   futureTrips,
   tripView,
+  showAnnual,
+  annualSpend,
   showPrice,
   totalSpent,
   departInput,
@@ -70,6 +72,7 @@ loginButton.addEventListener('click', () => {
       // console.log(fullLoggedInUser, "sorted data full user")
       displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
       populateDropdown(allDestinations)
+      findAnnualSpend(fullLoggedInUser)
       return fullLoggedInUser
     })
 });
@@ -94,6 +97,7 @@ requestButton.addEventListener('click', () => {
     fullLoggedInUser = completeCurrentUser(currentUser, allTrips, allTravelers, allDestinations)
     sortTrips(fullLoggedInUser, pastToDisplay, futureToDisplay, pendingToDisplay)
     displayTrips(fullLoggedInUser.tripData.past, fullLoggedInUser.tripData.future, fullLoggedInUser.tripData.pending)
+    findAnnualSpend(fullLoggedInUser)
     destInput.value = ''
     headcountInput.value = ''
     departInput.value = ''

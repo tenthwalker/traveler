@@ -7,6 +7,7 @@ let futureToDisplay = [];
 let newTrip;
 let dateToday;
 let pendingToDisplay = [];
+let formattedDate;
 
 const {
   allTravelers,
@@ -132,7 +133,7 @@ function makeNewTrip(allTrips, userID, departInput, durationInput, destInput, he
     status: "pending",
     suggestedActivities: [],
   }
-  dateToday = Date.now();
+  dateToday = new Date();
   const newTripDate = new Date(newTrip.date)
   if(dateToday < newTripDate){
     return newTrip
@@ -153,14 +154,46 @@ function findEstimatedCost(newTrip, allDestinations) {
   }
 }
 
-function findAnnualSpend() {
-  //calculated from trips (split date and check for match against year data compared to dateToday) and 10% agent fee
+function formatDate(date) {
+  formattedDate = date.getFullYear() + "/" + (date.getMonth() + 1 ) + "/" + date.getDate();
+  return formattedDate;
 }
 
+function findAnnualSpend(fullLoggedInUser) {
+  console.log(fullLoggedInUser, "fullLog")
+  let totalCost = 0;  
+  dateToday = formatDate(new Date()).split('/')
+  // const userTrips = fullLoggedInUser.tripData.pending.filter((trip)=>{
+  //   const tripDate = new Date(trip.destination.date);
+  //   return checkTripYear(tripDate, 2023);
+  // });
+  // console.log(userTrips, "userTrips")
+  // userTrips.forEach((trip) => {
+  //   const tripComboCost = calculateTripCost(fullLoggedInUser)
+  //   totalCost += tripComboCost;
+  // });
+  console.log(totalCost, "totalCost")
+  return totalCost;
+
+}
+
+function calculateTripCost(fullLoggedInUser) {
+  // console.log(trip, "trip")
+  const flightPP = fullLoggedInUser.tripData.pending.destination.estimatedFlightCostPerPerson
+  console.log(flightPP, "flightPP")
+  const lodgingPD = fullLoggedInUser.destination.estimatedLodgingCostPerDay
+  const travelers = fullLoggedInUser.destination.travelers
+  const duration = fullLoggedInUser.destination.duration
+  let tripCost = (travelers * flightPP) + (travelers * lodgingPD * duration) * 1.1
+  return tripCost
+}
+
+function checkTripYear(formattedDate, year) {
+  return formattedDate.getFullYear() === year
+}
 
 module.exports = {
   loginAttempt,
-  findAnnualSpend,
   filterTravs,
   newTrip,
   sortTrips,
@@ -168,6 +201,7 @@ module.exports = {
   userID,
   filterDestinations,
   filterTrips,
+  findAnnualSpend,
   currentUser,
   destinationsToDisplay,
   pastToDisplay,
